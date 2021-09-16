@@ -15,8 +15,17 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Download
-        run: cd openeuler; sh download.sh
-      
+        run: cd openeuler; ./download.sh
+
+      - name: cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            openeuler/2*
+          key: build-${{ hashFiles('openeuler/*') }}
+          restore-keys: |
+            build-
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
 
