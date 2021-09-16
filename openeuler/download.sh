@@ -19,12 +19,13 @@ do
         mkdir -p $VERSION
         # Download
         cd $VERSION
+        URL_VERSION=`echo $VERSION | tr 'a-z' 'A-Z'`
         if [ ! -f "openEuler-docker.$ARCH.tar.xz" ]; then
-            wget https://repo.openeuler.org/openEuler-$VERSION/docker_img/$ARCH/openEuler-docker.$ARCH.tar.xz
+            wget https://repo.openeuler.org/openEuler-$URL_VERSION/docker_img/$ARCH/openEuler-docker.$ARCH.tar.xz
         fi
         # Re-download and validate sha256sum everytime
         rm -f openEuler-docker.$ARCH.tar.xz.sha256sum
-        wget https://repo.openeuler.org/openEuler-$VERSION/docker_img/$ARCH/openEuler-docker.$ARCH.tar.xz.sha256sum
+        wget https://repo.openeuler.org/openEuler-$URL_VERSION/docker_img/$ARCH/openEuler-docker.$ARCH.tar.xz.sha256sum
         shasum -c openEuler-docker.$ARCH.tar.xz.sha256sum
         # Extract rootfs
         if [ ! -f "openEuler-docker-rootfs.$DOCKER_ARCH.tar.xz" ]; then
