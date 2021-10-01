@@ -1,4 +1,4 @@
-name: Docker
+name: openEuler Basic Image
 
 on:
   pull_request:
@@ -6,6 +6,9 @@ on:
 
 jobs:
   build:
+    strategy:
+      matrix:
+        version: [20.03-lts, 20.03-lts-sp1, 20.03-lts-sp2, 20.09, 21.03, 21.09]
 
     runs-on: ubuntu-latest
 
@@ -22,12 +25,9 @@ jobs:
           key: build-${{ hashFiles('openeuler/*') }}
           restore-keys: |
             build-
-
       - name: Download
         working-directory: openeuler
-        run: ./download.sh 21.03
-
-
+        run: ./download.sh ${{ version }}
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
 
@@ -44,9 +44,9 @@ jobs:
         id: docker_build
         uses: docker/build-push-action@v2
         with:
-          context: ./openeuler/21.03/
+          context: ./openeuler/${{ version }}/
           push: true
-          tags: yikunkero/openeuler:latest
+          tags: yikunkero/openeuler:${{ version }}
           platforms: linux/amd64,linux/arm64
 
       - name: Image digest
