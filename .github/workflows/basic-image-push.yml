@@ -1,10 +1,16 @@
 name: openEuler Basic Image
 
 on: 
+  pull_request:
+    # Only trigger job when file in openeuler changed
+    paths:
+      - 'openeuler'
+    branches: [ master ]
   push:
     # Only trigger job when file in openeuler changed
     paths:
       - 'openeuler'
+    branches: [ master ]
 
 jobs:
   build:
