@@ -5,6 +5,7 @@ on:
     # Only trigger job when file in openeuler changed
     paths:
       - 'openeuler'
+      - '.github/workflows/basic-image-push.yml'
     branches: [ master ]
   push:
     # Only trigger job when file in openeuler changed
