@@ -53,6 +53,16 @@ jobs:
           push: true
           tags: openeuler/openeuler:${{ matrix.version }}
           platforms: linux/amd64,linux/arm64
+        
+      - name: Build and push
+        id: docker_build_latest
+        if: ${{ matrix.version }} == "20.03-lts-sp3"
+        uses: docker/build-push-action@v2
+        with:
+          context: ./openeuler/${{ matrix.version }}/
+          push: true
+          tags: openeuler/openeuler:latest
+          platforms: linux/amd64,linux/arm64
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
