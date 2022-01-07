@@ -12,7 +12,7 @@ jobs:
   build:
     strategy:
       matrix:
-        version: [20.03-lts, 20.03-lts-sp1, 20.03-lts-sp2, 20.09, 21.03, 21.09]
+        version: [20.03-lts-sp3]
 
     runs-on: ubuntu-latest
 
@@ -52,6 +52,16 @@ jobs:
           context: ./openeuler/${{ matrix.version }}/
           push: true
           tags: openeuler/openeuler:${{ matrix.version }}
+          platforms: linux/amd64,linux/arm64
+        
+      - name: Build and push
+        id: docker_build_latest
+        if: ${{ matrix.version }} == "20.03-lts-sp3"
+        uses: docker/build-push-action@v2
+        with:
+          context: ./openeuler/${{ matrix.version }}/
+          push: true
+          tags: openeuler/openeuler:latest
           platforms: linux/amd64,linux/arm64
 
       - name: Image digest
