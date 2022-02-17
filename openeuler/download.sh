@@ -27,6 +27,7 @@ do
         # Re-download and validate sha256sum everytime
         rm -f openEuler-docker.$ARCH.tar.xz.sha256sum
         wget https://repo.openeuler.org/openEuler-$URL_VERSION/docker_img/$ARCH/openEuler-docker.$ARCH.tar.xz.sha256sum
+        cat cat openEuler-docker.$ARCH.tar.xz.sha256sum
         shasum -c openEuler-docker.$ARCH.tar.xz.sha256sum
         # Extract rootfs
         if [ ! -f "openEuler-docker-rootfs.$DOCKER_ARCH.tar.xz" ]; then
