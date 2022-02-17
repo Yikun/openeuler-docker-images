@@ -14,7 +14,7 @@ jobs:
       matrix:
         include:
           - version: 21.09
-            tags: openeuler/openeuler-test:21.09
+            tags: openeuler/openeuler:21.09
 
     runs-on: ubuntu-latest
 
