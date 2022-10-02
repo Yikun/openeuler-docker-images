@@ -13,22 +13,8 @@ jobs:
     strategy:
       matrix:
         include:
-          - version: 20.03-lts
-            tags: openeuler/openeuler:20.03-lts
-          - version: 20.03-lts-sp1
-            tags: openeuler/openeuler:20.03-lts-sp1
-          - version: 20.03-lts-sp2
-            tags: openeuler/openeuler:20.03-lts-sp2
-          - version: 20.09
-            tags: openeuler/openeuler:20.09
-          - version: 21.03
-            tags: openeuler/openeuler:21.03
-          - version: 21.09
-            tags: openeuler/openeuler:21.09
-          - version: 20.03-lts-sp3
-            tags: openeuler/openeuler:20.03-lts-sp3,openeuler/openeuler:20.03
-          - version: 22.03-lts
-            tags: openeuler/openeuler:22.03-lts,openeuler/openeuler:latest,openeuler/openeuler:22.03
+          - version: 22.09
+            tags: openeuler/openeuler:22.09
 
     runs-on: ubuntu-latest
 
