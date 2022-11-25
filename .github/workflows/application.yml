@@ -3,8 +3,7 @@ name: Images
 on:
   pull_request:
     paths:
-      - 'kolla'
-      - '.github/workflows/kolla-image-push.yml'
+      - '.github/workflows/application.yml'
     branches: [ master ]
 
 jobs:
