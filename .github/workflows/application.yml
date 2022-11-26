@@ -31,9 +31,9 @@ jobs:
       - name: Publish - Push Image
         uses: docker/build-push-action@v2
         with:
-          context: ./spark/3.3.1/22.03-lts
+          context: ./flink/1.16/22.03-lts
           push: true
           tags: |
-            openeuler/spark:3.3.1-22.03-lts
-            openeuler/spark:latest
+            openeuler/flink:1.16-22.03-lts
+            openeuler/flink:latest
           platforms: linux/amd64,linux/arm64
