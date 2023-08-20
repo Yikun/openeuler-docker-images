@@ -1,4 +1,4 @@
-name: OpenStack Kolla Images
+name: OpenStack Kolla Images test
 
 on:
   pull_request:
