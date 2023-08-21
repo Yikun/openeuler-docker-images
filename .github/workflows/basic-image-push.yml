@@ -13,20 +13,8 @@ jobs:
     strategy:
       matrix:
         include:
-          - version: 20.03-lts-sp1
-            tags: openeuler/openeuler:20.03-lts-sp1
-          - version: 20.03-lts-sp2
-            tags: openeuler/openeuler:20.03-lts-sp2
-          - version: 20.09
-            tags: openeuler/openeuler:20.09
-          - version: 21.03
-            tags: openeuler/openeuler:21.03
-          - version: 21.09
-            tags: openeuler/openeuler:21.09
-          - version: 20.03-lts-sp3
-            tags: openeuler/openeuler:20.03-lts-sp3,openeuler/openeuler:20.03
-          - version: 22.03-lts
-            tags: openeuler/openeuler:22.03-lts,openeuler/openeuler:latest,openeuler/openeuler:22.03
+          - version: 22.03-lts-sp1
+            tags: quay.io/openeuler/openeuler:22.03-lts-sp1,quay.io/openeuler/openeuler:latest,quay.io/openeuler/openeuler:22.03
 
     runs-on: ubuntu-latest
 
@@ -48,16 +36,23 @@ jobs:
         run: ./download.sh ${{ matrix.version }}
 
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
+        uses: docker/setup-qemu-action@v2
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
+        uses: docker/setup-buildx-action@v2
 
       - name: Login to DockerHub
-        uses: docker/login-action@v1 
+        uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Login to QUAY
+        uses: docker/login-action@v2 
+        with:
+          registry: quay.io
+          username: ${{ secrets.QUAY_USERNAME }}
+          password: ${{ secrets.QUAY_TOKEN }}
 
       - name: Build and push
         id: docker_build
